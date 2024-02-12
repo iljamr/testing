@@ -1,0 +1,3 @@
+[tool.ruff]
+force-exclude = true
+exclude = [ "LiDAR-MOS", "4DMOS" ]
