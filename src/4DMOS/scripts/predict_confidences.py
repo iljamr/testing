@@ -6,7 +6,6 @@
 import click
 from pytorch_lightning import Trainer
 import torch
-import torch.nn.functional as F
 
 import mos4d.datasets.datasets as datasets
 import mos4d.models.models as models
@@ -36,7 +35,9 @@ import mos4d.models.models as models
     help="Desired temporal resolution of predictions.",
     default=None,
 )
-@click.option("--poses", "-poses", type=str, default=None, help="Specify which poses to use.")
+@click.option(
+    "--poses", "-poses", type=str, default=None, help="Specify which poses to use."
+)
 @click.option(
     "--transform",
     "-transform",
@@ -50,7 +51,7 @@ def main(weights, sequence, dt, poses, transform):
     if poses:
         cfg["DATA"]["POSES"] = poses
 
-    if transform != None:
+    if transform is not None:
         cfg["DATA"]["TRANSFORM"] = transform
         if not transform:
             cfg["DATA"]["POSES"] = "no_poses"

@@ -8,8 +8,8 @@ DATA:
   SHUFFLE: True
   NUM_WORKER: 4
   DELTA_T_DATA: 0.1 # Time between scans in the dataset (0.1s for KITTI)
-  VOXEL_SIZE: 0.1 # Used for discretization in x,y,z when creating a sparse tensor 
-  SEMANTIC_CONFIG_FILE: "./config/semantic-kitti-mos.yaml" 
+  VOXEL_SIZE: 0.1 # Used for discretization in x,y,z when creating a sparse tensor
+  SEMANTIC_CONFIG_FILE: "./config/semantic-kitti-mos.yaml"
   SPLIT:
     TRAIN:
       - 0
@@ -36,7 +36,7 @@ DATA:
       - 19
       - 20
       - 21
- 
+
 ##Training
 TRAIN:
   MAX_EPOCH: 60

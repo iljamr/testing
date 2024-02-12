@@ -14,7 +14,9 @@ class ClassificationMetrics(nn.Module):
         self.n_classes = n_classes
         self.ignore_index = ignore_index
 
-    def compute_confusion_matrix(self, pred_logits: torch.Tensor, gt_labels: torch.Tensor):
+    def compute_confusion_matrix(
+        self, pred_logits: torch.Tensor, gt_labels: torch.Tensor
+    ):
         # Set ignored classes to -inf to not influence softmax
         pred_logits[:, self.ignore_index] = -float("inf")
 
@@ -24,8 +26,12 @@ class ClassificationMetrics(nn.Module):
 
         idxs = torch.stack([pred_labels, gt_labels], dim=0)
         ones = torch.ones((idxs.shape[-1])).type_as(gt_labels)
-        confusion_matrix = torch.zeros(self.n_classes, self.n_classes).type_as(gt_labels)
-        confusion_matrix = confusion_matrix.index_put_(tuple(idxs), ones, accumulate=True)
+        confusion_matrix = torch.zeros(self.n_classes, self.n_classes).type_as(
+            gt_labels
+        )
+        confusion_matrix = confusion_matrix.index_put_(
+            tuple(idxs), ones, accumulate=True
+        )
         return confusion_matrix
 
     def getStats(self, confusion_matrix):

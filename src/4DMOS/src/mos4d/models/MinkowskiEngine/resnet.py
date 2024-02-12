@@ -21,13 +21,12 @@
 # Please cite "4D Spatio-Temporal ConvNets: Minkowski Convolutional Neural
 # Networks", CVPR'19 (https://arxiv.org/abs/1904.08755) if you use any part
 # of the code.
-import os
-from urllib.request import urlretrieve
 import numpy as np
 
 import torch
 import torch.nn as nn
 from torch.optim import SGD
+import open3d as o3d
 
 import MinkowskiEngine as ME
 from MinkowskiEngine.modules.resnet_block import BasicBlock, Bottleneck
@@ -65,10 +64,18 @@ class ResNetBase(nn.Module):
             ME.MinkowskiMaxPooling(kernel_size=2, stride=2, dimension=D),
         )
 
-        self.layer1 = self._make_layer(self.BLOCK, self.PLANES[0], self.LAYERS[0], stride=2)
-        self.layer2 = self._make_layer(self.BLOCK, self.PLANES[1], self.LAYERS[1], stride=2)
-        self.layer3 = self._make_layer(self.BLOCK, self.PLANES[2], self.LAYERS[2], stride=2)
-        self.layer4 = self._make_layer(self.BLOCK, self.PLANES[3], self.LAYERS[3], stride=2)
+        self.layer1 = self._make_layer(
+            self.BLOCK, self.PLANES[0], self.LAYERS[0], stride=2
+        )
+        self.layer2 = self._make_layer(
+            self.BLOCK, self.PLANES[1], self.LAYERS[1], stride=2
+        )
+        self.layer3 = self._make_layer(
+            self.BLOCK, self.PLANES[2], self.LAYERS[2], stride=2
+        )
+        self.layer4 = self._make_layer(
+            self.BLOCK, self.PLANES[3], self.LAYERS[3], stride=2
+        )
 
         self.conv5 = nn.Sequential(
             ME.MinkowskiDropout(),
@@ -119,7 +126,9 @@ class ResNetBase(nn.Module):
         self.inplanes = planes * block.expansion
         for i in range(1, blocks):
             layers.append(
-                block(self.inplanes, planes, stride=1, dilation=dilation, dimension=self.D)
+                block(
+                    self.inplanes, planes, stride=1, dilation=dilation, dimension=self.D
+                )
             )
 
         return nn.Sequential(*layers)
