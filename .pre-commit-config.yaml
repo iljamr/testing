@@ -5,8 +5,18 @@ repos:
   - id: check-yaml
   - id: end-of-file-fixer
   - id: trailing-whitespace
+  - id: check-yaml
+  - id: check-json
   - id: check-added-large-files
-    args: ['--maxkb=500']  # Set a maximum file size (in KB)
+    args: ['--maxkb=1000']  # Set a maximum file size (in KB)
+    exclude: >
+      (?x)^(
+        methods/learning-based/MotionBEV/pretrain/.*\.pt$|
+        methods/learning-based/MotionBEV/imgs/|
+        simulators/marsim/marsim_ws/src/MARSIM/Utils/odom_visualization/|
+        simulators/marsim/marsim_ws/src/MARSIM/map_generator/resource/.*\.pcd$|
+        methods/learning-based/LiDAR-MOS/mos_SalsaNext/images/
+      )
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
   rev: v0.2.1

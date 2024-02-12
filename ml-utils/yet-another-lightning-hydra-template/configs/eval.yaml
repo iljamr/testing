@@ -1,0 +1,19 @@
+# @package _global_
+
+defaults:
+  - _self_
+  - datamodule: mnist.yaml # choose datamodule with `test_dataloader()` for evaluation
+  - module: mnist.yaml
+  - logger: null
+  - trainer: default.yaml
+  - paths: default.yaml
+  - extras: default.yaml
+  - hydra: default.yaml
+
+task_name: "eval"
+predict: False
+
+tags: ["dev"]
+
+# passing checkpoint path is necessary for evaluation
+ckpt_path: /Users/ilja/School/TQDT33/code/yet-another-lightning-hydra-template/logs/train/runs/2024-01-30_14-22-54/checkpoints/epoch048-loss_valid0.0988-metric_valid0.9812.ckpt
