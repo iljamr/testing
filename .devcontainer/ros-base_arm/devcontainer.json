@@ -1,0 +1,69 @@
+{
+  "name": "Base (ROS)",
+  "dockerFile": "Dockerfile",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/home/vscode/${localWorkspaceFolderBasename},type=bind",
+  "workspaceFolder": "/home/vscode/${localWorkspaceFolderBasename}",
+  "mounts": [
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.bash_history,target=/home/vscode/.bash_history,type=bind",
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/vscode/.ssh,readonly,type=bind"
+  ],
+  "forwardPorts": [
+    6080,
+    5901
+  ],
+  "portsAttributes": {
+    "6080": {
+      "label": "vnc web"
+    },
+    "5901": {
+      "label": "vnc viewer"
+    }
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/desktop-lite:1": {
+      "webPort": 6080,
+      "vncPort": 5901,
+      "password": "vscode"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "github.copilot",
+        "GitHub.copilot-chat",
+        "ms-vscode.cpptools",
+        "ms-python.python",
+        "ms-vscode.cpptools-extension-pack",
+        "ms-python.isort",
+        "ms-python.black-formatter",
+        "ms-iot.vscode-ros",
+        "ajshort.msg",
+        "twxs.cmake",
+        "redhat.vscode-xml",
+        "betwo.b2-catkin-tools",
+        "ms-azuretools.vscode-docker",
+        "actboy168.tasks"
+      ],
+      "settings": {
+        "editor.formatOnSave": false,
+        "python.pythonPath": "/usr/bin/python3",
+        "python.isort.args": [
+          "--profile",
+          "black"
+        ],
+        "[python]": {
+          "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+          },
+          "editor.defaultFormatter": "ms-python.black-formatter"
+        },
+        "[cpp]": {
+          "editor.defaultFormatter": "ms-vscode.cpptools"
+        },
+        "editor.minimap.enabled": false,
+        "cmake.configureOnEdit": false,
+        "cmake.configureOnOpen": false
+      }
+    }
+  }
+}

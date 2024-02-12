@@ -1,11 +1,20 @@
 {
-	"name": "torch-tensor-rt",
+	"name": "LMNet (PyTorch Jetson)",
 	"build": {
 		"dockerfile": "Dockerfile"
 	},
 	"forwardPorts": [
+		5901,
 		8888
 	],
+	"portsAttributes": {
+		"5901": {
+			"label": "vnc viewer"
+		},
+		"8888": {
+			"label": "notebook"
+		}
+	},
 	"customizations": {
 		"vscode": {
 			"extensions": [

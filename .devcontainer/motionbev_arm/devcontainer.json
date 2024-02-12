@@ -1,11 +1,32 @@
 {
-	"name": "torch-tensor-rt",
+	"name": "MotionBEV (PyTorch Jetson)",
 	"build": {
 		"dockerfile": "Dockerfile"
 	},
+	"runArgs": ["--shm-size=2gb"],
 	"forwardPorts": [
+		6080,
+		5901,
 		8888
 	],
+	"portsAttributes": {
+		"6080": {
+			"label": "vnc web"
+		},
+		"5901": {
+			"label": "vnc viewer"
+		},
+		"8888": {
+			"label": "notebook"
+		}
+	},
+	"features": {
+		"ghcr.io/devcontainers/features/desktop-lite:1": {
+			"webPort": 6080,
+			"vncPort": 5901,
+			"password": "vscode"
+		}
+	},
 	"customizations": {
 		"vscode": {
 			"extensions": [

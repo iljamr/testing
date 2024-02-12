@@ -1,0 +1,43 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Websocket",
+            "type": "shell",
+            "command": "roslaunch rosbridge_server rosbridge_websocket.launch",
+        },
+        {
+            "label": "MARSIM",
+            "type": "shell",
+            "command": "source /home/vscode/code/simulators/marsim/marsim_ws/devel/setup.bash && roslaunch test_interface ${input:marsimLaunch}",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "showReuseMessage": false,
+                "clear": true,
+                "focus": true,
+            },
+            "problemMatcher": "",
+        },
+    ],
+    "inputs": [
+        {
+            "id": "marsimLaunch",
+            "description": "Select a launch file to run",
+            "type": "pickString",
+            "options": [
+                "double_drone.launch",
+                "double_drone_avia.launch",
+                "single_drone.xml",
+                "single_drone_avia.launch",
+                "single_drone_dynobs.xml",
+                "single_drone_mid360.launch",
+                "single_drone_mid360_dynobs.launch",
+                "single_drone_os128.launch",
+                "triple_drone.launch",
+                "triple_drone_mid360.launch",
+            ],
+            "default": "single_drone_mid360.launch"
+        },
+    ]
+}

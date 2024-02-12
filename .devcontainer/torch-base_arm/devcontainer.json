@@ -1,0 +1,57 @@
+{
+	"name": "Base (PyTorch Jetson)",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+	"forwardPorts": [
+		6080,
+		5901,
+		8888
+	],
+	"portsAttributes": {
+		"6080": {
+			"label": "vnc web"
+		},
+		"5901": {
+			"label": "vnc viewer"
+		},
+		"8888": {
+			"label": "notebook"
+		}
+	},
+	"features": {
+		"ghcr.io/devcontainers/features/desktop-lite:1": {
+			"webPort": 6080,
+			"vncPort": 5901,
+			"password": "vscode"
+		}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"njpwerner.autodocstring",
+				"ms-toolsai.jupyter",
+				"github.copilot",
+				"GitHub.copilot-chat",
+				"ms-python.python",
+				"ms-python.isort",
+				"ms-python.black-formatter"
+			],
+			"settings": {
+				"editor.formatOnSave": false,
+				"python.pythonPath": "/usr/bin/python3",
+				"python.isort.args": [
+					"--profile",
+					"black"
+				],
+				"[python]": {
+					"editor.codeActionsOnSave": {
+						"source.organizeImports": true
+					},
+					"editor.defaultFormatter": "ms-python.black-formatter"
+				},
+				"editor.minimap.enabled": false
+			}
+		}
+	}
+}

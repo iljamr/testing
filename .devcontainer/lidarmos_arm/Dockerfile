@@ -2,11 +2,19 @@
 FROM dustynv/torch_tensorrt:r35.2.1 AS base
 ################################################################################
 
-# Copy requirements.txt
-COPY requirements.txt /tmp/requirements.txt
-
 RUN python3 -m pip install --upgrade pip && \
-    python3 -m pip install -r /tmp/requirements.txt
+    python3 -m pip install \
+        notebook \
+        pytorch-lightning \
+        torchmetrics \
+        tqdm \
+        matplotlib \
+        pandas \
+        numpy \
+        Pillow \
+        seaborn \
+        scikit_learn \
+        ipython
 
 ################################################################################
 FROM base AS user

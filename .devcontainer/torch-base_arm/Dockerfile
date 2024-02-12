@@ -2,11 +2,19 @@
 FROM dustynv/torch_tensorrt:r35.2.1 AS base
 ################################################################################
 
-# Copy requirements.txt
-COPY requirements.txt /tmp/requirements.txt
-
 RUN python3 -m pip install --upgrade pip && \
-    python3 -m pip install -r /tmp/requirements.txt
+    python3 -m pip install \
+        notebook \
+        pytorch-lightning \
+        torchmetrics \
+        tqdm \
+        matplotlib \
+        pandas \
+        numpy \
+        Pillow \
+        seaborn \
+        scikit_learn \
+        ipython
 
 ################################################################################
 FROM base AS user
@@ -28,9 +36,6 @@ USER $USERNAME
 
 # Set environment variable for user
 ENV USER=$USERNAME
-
-# To fix error: https://github.com/keras-team/autokeras/issues/1475
-ENV LD_PRELOAD='/usr/local/lib/python3.8/dist-packages/scikit_learn.libs/libgomp-d22c30c5.so.1.0.0'
 
 # Update all packages
 RUN sudo apt update && sudo apt upgrade -y

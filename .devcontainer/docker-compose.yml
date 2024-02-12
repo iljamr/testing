@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  foxglove:
+      container_name: foxglove_bridge
+      image: ghcr.io/foxglove/studio:latest
+      ports:
+        - 8080:8080
