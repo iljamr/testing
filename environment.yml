@@ -1,7 +1,12 @@
+name: tqdt33
+
 dependencies:
-  - python=3.12
   - numpy
   - pip
   - pip:
     - ruff
     - pre-commit
+    - directory-tree
+    - python-lzf
+    - matplotlib
+    - pandas

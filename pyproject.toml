@@ -1,3 +1,6 @@
 [tool.ruff]
 force-exclude = true
-exclude = [ "LiDAR-MOS", "4DMOS" ]
+exclude = [ "methods/*", "ml-utils/*", "odometry/*", "simulators/*", "tools/*"]
+
+[tool.ruff.lint]
+ignore = ["E731"]

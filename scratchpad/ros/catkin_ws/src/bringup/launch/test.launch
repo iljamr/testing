@@ -1,0 +1,13 @@
+<launch>
+      <param name="use_sim_time" value="true" />
+
+      <!-- Set the paths to your bag files -->
+      <arg name="bagfile1" default="/home/vscode/code/data/deepforestry/2023-12-16-14-12-09_filtered.bag" />
+      <arg name="bagfile2" default="/home/vscode/code/data/deepforestry/2023-12-16-14-12-09_slam.bag" />
+
+      <!-- Set the start times for each bag file -->
+      <!-- <arg name="start_time" default="100.0" /> -->
+
+      <!-- Launch the rosbag playback for both bags -->
+      <node pkg="rosbag" type="play" name="rosbag_player1" output="screen" args="--clock --start $(arg start_time) $(arg bagfile1) $(arg bagfile2)" />
+</launch>
