@@ -1,4 +1,4 @@
-name: test-pipeline
+name: Pre-commit and Linting Checks
 
 on:
   pull_request:
