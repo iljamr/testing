@@ -10,3 +10,10 @@ dependencies:
     - python-lzf
     - matplotlib
     - pandas
+    - directory-tree
+    - jupyter
+    - python-dotenv
+    - icecream
+    - tqdm
+    - numba
+    - scipy
