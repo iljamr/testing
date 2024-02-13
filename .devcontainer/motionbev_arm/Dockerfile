@@ -4,17 +4,19 @@ FROM dustynv/torch_tensorrt:r35.2.1 AS base
 
 RUN python3 -m pip install --upgrade pip && \
     python3 -m pip install \
-        notebook \
-        pytorch-lightning \
-        torchmetrics \
-        tqdm \
-        matplotlib \
-        pandas \
-        numpy \
-        Pillow \
-        seaborn \
-        scikit_learn \
-        ipython
+    ruff \
+    pre-commit \
+    notebook \
+    pytorch-lightning \
+    torchmetrics \
+    tqdm \
+    matplotlib \
+    pandas \
+    numpy \
+    Pillow \
+    seaborn \
+    scikit_learn \
+    ipython
 
 ################################################################################
 FROM base AS motionbev
@@ -30,7 +32,7 @@ RUN python3 -m pip install \
     dropblock
 
 # One of: cpu, cu117, cu118, or cu121. https://data.pyg.org/whl/
-ARG CUDA=cpu
+ARG CUDA=cu118
 
 # https://github.com/rusty1s/pytorch_scatter
 RUN pip install torch-scatter -f https://data.pyg.org/whl/torch-2.0.0+${CUDA}.html
@@ -55,6 +57,7 @@ USER $USERNAME
 
 # Set environment variable for user
 ENV USER=$USERNAME
+ENV DATA_PATH=/home/${USERNAME}/data
 
 # Update all packages
 RUN sudo apt update && sudo apt upgrade -y
