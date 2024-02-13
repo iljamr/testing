@@ -11,7 +11,10 @@
 		"source=${localEnv:DATA_PATH},target=/home/vscode/data,type=bind"
 	],
 	"runArgs": [
-		"--shm-size=2gb"
+		"--shm-size=2gb",
+		"--runtime=nvidia",
+		"--gpus",
+		"all"
 	],
 	"forwardPorts": [
 		6080,

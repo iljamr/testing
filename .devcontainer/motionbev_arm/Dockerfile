@@ -16,6 +16,9 @@ RUN python3 -m pip install --upgrade pip && \
     Pillow \
     seaborn \
     scikit_learn \
+    jupyter \
+    directory-tree \
+    python-dotenv \
     ipython
 
 ################################################################################

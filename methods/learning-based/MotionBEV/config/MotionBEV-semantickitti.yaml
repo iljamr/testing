@@ -20,10 +20,10 @@ model_params:
 ###################
 ## Data_loader options
 data_loader:
-  data_path: "/workspaces/TQDT33/code/data/kitti/toykitty"
+  data_path: "/home/vscode/data/kitti/SemanticKITTI/symlinks/motionbev/"
   return_ref: True  # reflectivity(intensity)
   residual: 8  # residual 1-8, 0 for none
-  residual_path: "/workspaces/TQDT33/code/data/kitti/motionbev/residual-polar-sequential-480-360"
+  residual_path: "/home/vscode/data/kitti/motionbev/residual-polar-sequential-480-360/"
   batch_size: 8
   shuffle: True
   drop_few_static_frames: True  # drop_few_static_frames for training, speed up training while slightly reduce the accuracy
@@ -42,7 +42,7 @@ data_loader:
 ## Train params
 train_params:
   name: "MotionBEV"
-  model_load_path: "/workspaces/TQDT33/code/methods/learning-based/MotionBEV/pretrain/MotionBEV-kitti-val-76.54.pt" # none for training from scratch
+  model_load_path: "/home/vscode/testing/methods/learning-based/MotionBEV/pretrain/MotionBEV-kitti-val-76.54.pt" # none for training from scratch
   checkpoint_every_n_steps: 500
   max_num_epochs: 100
   eval_every_n_steps: 1048  #1411 #1048

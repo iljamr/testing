@@ -41,6 +41,7 @@ def main(arch_config, data_config):
     print("arch_config: ", arch_config)
     print("data_config: ", data_config)
 
+    print(f'Using device {torch.cuda.get_device_name(0)}' if torch.cuda.is_available() else 'Using CPU')
     # parameters
     configs = load_config_data(arch_config)
     data_cfg = configs['data_loader']
