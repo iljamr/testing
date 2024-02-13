@@ -31,36 +31,35 @@
       "extensions": [
         "github.copilot",
         "GitHub.copilot-chat",
-        "ms-vscode.cpptools",
         "ms-python.python",
+        "charliermarsh.ruff",
+        "eamodio.gitlens",
+        "ms-vscode-remote.vscode-remote-extensionpack",
+        "ms-azuretools.vscode-docker",
+        "mhutchie.git-graph",
+        "ms-vscode.cpptools",
         "ms-vscode.cpptools-extension-pack",
-        "ms-python.isort",
-        "ms-python.black-formatter",
         "ms-iot.vscode-ros",
         "ajshort.msg",
         "twxs.cmake",
         "redhat.vscode-xml",
         "betwo.b2-catkin-tools",
-        "ms-azuretools.vscode-docker",
         "actboy168.tasks"
       ],
       "settings": {
-        "editor.formatOnSave": false,
+        "editor.minimap.enabled": false,
         "python.pythonPath": "/usr/bin/python3",
-        "python.isort.args": [
-          "--profile",
-          "black"
-        ],
         "[python]": {
           "editor.codeActionsOnSave": {
-            "source.organizeImports": true
-          },
-          "editor.defaultFormatter": "ms-python.black-formatter"
+            "editor.formatOnSave": "explicit",
+            "source.organizeImports": "explicit",
+            "editor.defaultFormatter": "charliermarsh.ruff",
+            "editor.defaultFoldingRangeProvider": "charliermarsh.ruff"
+          }
         },
         "[cpp]": {
           "editor.defaultFormatter": "ms-vscode.cpptools"
         },
-        "editor.minimap.enabled": false,
         "cmake.configureOnEdit": false,
         "cmake.configureOnOpen": false
       }

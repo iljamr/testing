@@ -47,8 +47,8 @@ def main(arch_config, data_config):
     model_cfg = configs['model_params']
     train_cfg = configs['train_params']
     fea_compre = model_cfg['grid_size'][2]
-    # pytorch_device = torch.device('cuda:0')
-    pytorch_device = torch.device('cpu')
+
+    pytorch_device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
     test_batch_size = 1
     prediction_save_dir = './prediction_save_dir_KITTI'
@@ -91,7 +91,8 @@ def main(arch_config, data_config):
     model_load_path = train_cfg['model_load_path']
     if os.path.exists(model_load_path):
         print("Load model from: " + model_load_path)
-        my_model.load_state_dict(torch.load(model_load_path, map_location=torch.device('cpu')))
+        # my_model.load_state_dict(torch.load(model_load_path))
+        my_model.load_state_dict(torch.load(model_load_path, map_location=pytorch_device))
     else:
         print(model_load_path, " : not exist!")
         exit()
@@ -145,6 +146,7 @@ def main(arch_config, data_config):
                                                      shuffle=False,
                                                      num_workers=data_cfg['num_workers'],
                                                      pin_memory=True)
+
     # validation
     if val:
         print('*' * 80)
@@ -160,11 +162,15 @@ def main(arch_config, data_config):
                 val_pt_fea_ten = [i.to(pytorch_device) for i in val_pt_fea]
                 val_grid_ten = [i.to(pytorch_device) for i in val_grid]
                 # val_vox_label_ten = val_vox_label.to(pytorch_device)
+                if torch.cuda.is_available():
+                    torch.cuda.synchronize()
+                    start_time = time.time()
+                    predict_labels, pt_out = my_model(val_pt_fea_ten, val_grid_ten, pytorch_device)
+                    torch.cuda.synchronize()
+                else:
+                    start_time = time.time()
+                    predict_labels, pt_out = my_model(val_pt_fea_ten, val_grid_ten, pytorch_device)
 
-                # torch.cuda.synchronize()
-                start_time = time.time()
-                predict_labels, pt_out = my_model(val_pt_fea_ten, val_grid_ten, pytorch_device)
-                # torch.cuda.synchronize()
                 time_list.append(time.time() - start_time)
 
                 predict_labels = torch.argmax(predict_labels, dim=1)

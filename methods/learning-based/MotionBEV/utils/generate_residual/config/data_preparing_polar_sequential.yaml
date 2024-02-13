@@ -6,13 +6,15 @@ num_last_n: 4
 
 # Inputs
 # the folder of raw LiDAR scans
-scan_folder: '/Users/ilja/School/TQDT33/code/data/kitti/toykitty/'
+scan_folder: '/home/edgelab/storage/kitti/SemanticKITTI/symlinks/motionbev/' # vm
+# scan_folder: '/Users/ilja/School/TQDT33/code/data/kitti/toykitty/' # old mac
 
 # Outputs
-residual_image_folder: '/Users/ilja/School/TQDT33/code/data/kitti/motionbev/residual-polar-sequential-480-360/'
+residual_image_folder: '/home/edgelab/storage/kitti/SemanticKITTI/motionbev/residual-polar-sequential-480-360/' # vm
+# residual_image_folder: '/Users/ilja/School/TQDT33/code/data/kitti/motionbev/residual-polar-sequential-480-360/' # mac
 
 # Sequence
-sequence: [8]
+# sequence: [8]
 
 occlusion_block: True
 
