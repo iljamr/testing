@@ -5,6 +5,9 @@
 **/devel/
 **/logs/
 **/prediction_save_dir_KITTI/
+**/MotionSeg3D/pred/
+**/MotionSeg3D/logs/
+**/MotionSeg3D/toydata
 
 .DS_Store
 data/

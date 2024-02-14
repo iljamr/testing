@@ -4,6 +4,7 @@
 # This file is covered by the LICENSE file in the root of this project.
 # Brief: This script generates residual images
 
+import pathlib
 import os
 os.environ["OMP_NUM_THREADS"] = "4"
 import yaml
@@ -144,24 +145,35 @@ def process_one_seq(config):
 
 if __name__ == '__main__':
 
-    # load config file
-    # config_filename = 'config/data_preparing_hesai32.yaml'
     config_filename = 'config/data_preparing.yaml'
     config = load_yaml(config_filename)
 
-    # used for kitti-raw and kitti-road
-    for seq in range(0, 10): # sequences id
+    base_folder_input = pathlib.Path(config['input_base_folder'])
+    base_folder_output = pathlib.Path(config['output_base_folder'])
 
+    if isinstance(config.get("sequence"), list):
+        sequences = config["sequence"]
+    else:
+        sequences = range(0, 22)
+
+    for seq in sequences:
         for i in range(1,9): # residual_image_i
+            curr_base_folder_input = base_folder_input / f"{'%02d'%seq}"
+            curr_scan = curr_base_folder_input / 'velodyne'
+            curr_pose = curr_base_folder_input / 'poses.txt'
+            curr_calib = curr_base_folder_input / 'calib.txt'
 
-            # Update the value in config to facilitate the iterative loop
+            curr_base_folder_output = base_folder_output / f"sequences/{'%02d'%seq}"
+            curr_residual_image_folder = curr_base_folder_output / f"residual_images_{i}"
+            curr_visualization_folder = curr_base_folder_output / f"visualization_{i}"
+
             config['num_last_n'] = i
-            config['scan_folder'] = f"data/sequences/{'%02d'%seq}/velodyne"
-            config['pose_file'] = f"data/sequences/{'%02d'%seq}/poses.txt"
-            config['calib_file'] = f"data/sequences/{'%02d'%seq}/calib.txt"
-            # config['residual_image_folder'] = f"data/sequences/{'%02d'%seq}/residual_images_{i}"
-            # config['visualization_folder'] = f"data/sequences/{'%02d'%seq}/visualization_{i}"
-            config['residual_image_folder'] = f"tmpdata/sequences/{'%02d'%seq}/residual_images_{i}"
-            config['visualization_folder'] = f"tmpdata/sequences/{'%02d'%seq}/visualization_{i}"
+            config['scan_folder'] = curr_scan.as_posix()
+            config['pose_file'] = curr_pose.as_posix()
+            config['calib_file'] = curr_calib.as_posix()
+
+            config['residual_image_folder'] = curr_residual_image_folder.as_posix()
+            config['visualization_folder'] = curr_visualization_folder.as_posix()
+
             ic(config)
             process_one_seq(config)

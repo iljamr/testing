@@ -13,19 +13,11 @@ normalize: True
 # use the last n frame to calculate the difference image
 num_last_n: 8
 
-# Inputs
-# the folder of raw LiDAR scans
-scan_folder: 'data/sequences/08/velodyne'
-# ground truth poses file
-pose_file: 'data/sequences/08/poses.txt'
-# calibration file
-calib_file: 'data/sequences/08/calib.txt'
-
-# Outputs
-# the suffix should be the same as num_last_n!
-residual_image_folder: 'data/sequences/08/residual_images_8'
-visualize: True
-visualization_folder: 'data/sequences/08/visualization_8'
+# input and output folders (Changed by me)
+input_base_folder: '/home/vscode/testing/methods/learning-based/MotionSeg3D/data/sequences'
+output_base_folder: '/home/vscode/data/kitti/SemanticKITTI/motionseg3d/outputs'
+sequence: None # None for all sequences, or a list of numbers
+visualize: False
 
 # range image parameters
 range_image:
