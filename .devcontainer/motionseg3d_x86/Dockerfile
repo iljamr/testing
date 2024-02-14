@@ -17,6 +17,8 @@ RUN python3 -m pip install --no-cache-dir --upgrade pip && \
     git+https://github.com/mit-han-lab/torchsparse.git@v1.4.0
 
 RUN python3 -m pip install --no-cache-dir --upgrade \
+    ruff \
+    pre-commit \
     open3d \
     icecream \
     tensorboardX \
