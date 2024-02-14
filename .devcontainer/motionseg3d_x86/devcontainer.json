@@ -1,0 +1,69 @@
+{
+	"name": "MotionSeg3D (x86)",
+	"build": {
+		"context": "../../methods/learning-based/MotionSeg3D/",
+		"dockerfile": "Dockerfile"
+	},
+	"workspaceMount": "source=${localWorkspaceFolder},target=/home/vscode/${localWorkspaceFolderBasename},type=bind",
+	"workspaceFolder": "/home/vscode/${localWorkspaceFolderBasename}",
+	"mounts": [
+		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.bash_history,target=/home/vscode/.bash_history,type=bind",
+		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/vscode/.ssh,readonly,type=bind",
+		"source=${localEnv:DATA_PATH},target=/home/vscode/data,type=bind"
+	],
+	"runArgs": [
+		"--shm-size=2gb",
+		"--gpus",
+		"all"
+	],
+	// "forwardPorts": [
+	// 	6080,
+	// 	5901,
+	// 	8888
+	// ],
+	// "portsAttributes": {
+	// 	"6080": {
+	// 		"label": "vnc web"
+	// 	},
+	// 	"5901": {
+	// 		"label": "vnc viewer"
+	// 	},
+	// 	"8888": {
+	// 		"label": "notebook"
+	// 	}
+	// },
+	// "features": {
+	// 	"ghcr.io/devcontainers/features/desktop-lite:1": {
+	// 		"webPort": 6080,
+	// 		"vncPort": 5901,
+	// 		"password": "vscode"
+	// 	}
+	// },
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-toolsai.jupyter",
+				"github.copilot",
+				"GitHub.copilot-chat",
+				"ms-python.python",
+				"charliermarsh.ruff",
+				"eamodio.gitlens",
+				"ms-vscode-remote.vscode-remote-extensionpack",
+				"ms-azuretools.vscode-docker",
+				"mhutchie.git-graph"
+			],
+			"settings": {
+				"editor.minimap.enabled": false,
+				"python.pythonPath": "/usr/bin/python3",
+				"[python]": {
+					"editor.codeActionsOnSave": {
+						"editor.formatOnSave": "explicit",
+						"source.organizeImports": "explicit",
+						"editor.defaultFormatter": "charliermarsh.ruff",
+						"editor.defaultFoldingRangeProvider": "charliermarsh.ruff"
+					}
+				}
+			}
+		}
+	}
+}
