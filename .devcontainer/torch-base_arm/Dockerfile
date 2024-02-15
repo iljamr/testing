@@ -6,7 +6,7 @@ RUN python3 -m pip install --upgrade pip && \
     python3 -m pip install \
         ruff \
         pre-commit \
-        notebook \
+        jupyter \
         pytorch-lightning \
         torchmetrics \
         tqdm \
@@ -38,11 +38,12 @@ USER $USERNAME
 
 # Set environment variable for user
 ENV USER=$USERNAME
+ENV DATA_PATH=/home/${USERNAME}/data
 
 # Update all packages
 RUN sudo apt update && sudo apt upgrade -y
 
 # Install Git
-RUN sudo apt install -y git git-lfs
+RUN sudo apt install -y git
 
 ################################################################################

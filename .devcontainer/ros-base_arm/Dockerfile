@@ -16,11 +16,12 @@ FROM ros AS base
 
 # Install base packages
 RUN apt-get update && apt-get install -y \
-    black \
+    ruff \
+    pre-commit \
+    jupyter \
     build-essential \
     libtool \
     clang-format \
-    isort \
     rsync \
     wget \
     && rm -rf /var/lib/apt/lists/*
@@ -44,6 +45,7 @@ USER $USERNAME
 
 # Set environment variable for user
 ENV USER=$USERNAME
+ENV DATA_PATH=/home/${USERNAME}/data
 
 # Update all packages
 RUN sudo apt update && sudo apt upgrade -y
