@@ -9,6 +9,7 @@ repos:
     args: ['--maxkb=1000']  # Set a maximum file size (in KB)
     exclude: >
       (?x)^(
+        methods/learning-based/4DMOS/pre-trained/.*\.ckPT$|
         methods/learning-based/MotionBEV/pretrain/.*\.pt$|
         methods/learning-based/MotionBEV/imgs/|
         simulators/marsim/marsim_ws/src/MARSIM/Utils/odom_visualization/|
