@@ -28,25 +28,6 @@ RUN cd MinkowskiEngine; python setup.py install --force_cuda --blas=openblas
 FROM minkowski AS mos4d
 ################################################################################
 
-ENV PROJECT=/mos4d
-RUN mkdir -p $PROJECT
-RUN mkdir -p /mos4d/logs
-
-ENV DATA=/mos4d/data
-RUN mkdir -p $DATA
-
-# Install MinkowskiEngine Dependencies
-RUN apt-get update || true && apt-get install --no-install-recommends -y \
-    git \
-    libopenblas-dev \
-    && rm -rf /var/lib/apt/lists/*
-
-# Install project related dependencies
-WORKDIR $PROJECT
-COPY . $PROJECT
-RUN python3 -m pip install --editable .
-RUN rm -rf $PROJECT
-
 RUN python3 -m pip install --no-cache-dir --upgrade pip
 
 RUN python3 -m pip install --no-cache-dir --upgrade \
@@ -77,5 +58,7 @@ USER $USERNAME
 ENV USER=$USERNAME
 ENV DATA_PATH=/home/${USERNAME}/data
 ENV DATA=/home/${USERNAME}/data/kitti/SemanticKITTI/symlinks/4dmos/sequences
+
+RUN echo "export PATH=$PATH:/home/vscode/.local/bin" >> /home/${USERNAME}/.bashrc
 
 ################################################################################

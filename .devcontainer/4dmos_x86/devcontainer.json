@@ -4,6 +4,7 @@
 		"context": "../../methods/learning-based/4DMOS/",
 		"dockerfile": "Dockerfile"
 	},
+	"postStartCommand": "bash -c 'cd /home/vscode/${localWorkspaceFolderBasename}/methods/learning-based/4DMOS && python -m pip install --editable .'",
 	"workspaceMount": "source=${localWorkspaceFolder},target=/home/vscode/${localWorkspaceFolderBasename},type=bind",
 	"workspaceFolder": "/home/vscode/${localWorkspaceFolderBasename}",
 	"mounts": [
