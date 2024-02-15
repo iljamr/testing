@@ -1,0 +1,71 @@
+################################################################################
+ARG PYTORCH="2.0.1"
+ARG CUDA="11.7"
+ARG CUDNN="8"
+
+FROM pytorch/pytorch:${PYTORCH}-cuda${CUDA}-cudnn${CUDNN}-devel AS minkowski
+################################################################################
+
+ENV TORCH_CUDA_ARCH_LIST="6.0 6.1 6.2 7.0 7.2 7.5 8.0 8.6"
+
+ENV TORCH_NVCC_FLAGS="-Xfatbin -compress-all"
+ENV TZ=Europe/Stockholm
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install dependencies
+RUN apt-get update && apt-get install tzdata
+RUN apt-get install -y git ninja-build cmake build-essential libopenblas-dev
+
+RUN apt-get clean
+RUN rm -rf /var/lib/apt/lists/*
+
+# For faster build, use more jobs.
+ENV MAX_JOBS=4
+RUN git clone --recursive "https://github.com/NVIDIA/MinkowskiEngine"
+RUN cd MinkowskiEngine; python setup.py install --force_cuda --blas=openblas
+
+################################################################################
+FROM minkowski AS mapmos
+################################################################################
+
+RUN python3 -m pip install --no-cache-dir --upgrade pip
+RUN python3 -m pip install --no-cache-dir --upgrade \
+    scikit-build-core \
+    pyproject_metadata \
+    pathspec \
+    pybind11 \
+    ruff \
+    pre-commit \
+    jupyter \
+    directory-tree \
+    open3d
+
+RUN apt-get update && apt-get install -y libgl1 && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+################################################################################
+FROM mapmos AS user
+################################################################################
+
+# Add vscode user with same UID and GID as your host system
+ARG USERNAME=vscode
+ARG USER_UID=1000
+ARG USER_GID=$USER_UID
+RUN groupadd --gid $USER_GID $USERNAME \
+    && useradd -s /bin/bash --uid $USER_UID --gid $USER_GID -m $USERNAME \
+    && apt-get update \
+    && apt-get install -y sudo \
+    && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
+    && chmod 0440 /etc/sudoers.d/$USERNAME
+
+# Switch from root to user
+USER $USERNAME
+
+# Set environment variable for user
+ENV USER=$USERNAME
+ENV DATA_PATH=/home/${USERNAME}/data
+
+RUN echo "export PATH=$PATH:/home/vscode/.local/bin" >> /home/${USERNAME}/.bashrc
+
+################################################################################
