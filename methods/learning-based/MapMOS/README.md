@@ -15,7 +15,7 @@
 
 <details>
 <summary><b>Click here for qualitative results!</b></summary>
-  
+
 [![MapMOS](https://github.com/PRBonn/MapMOS/assets/38326482/a4238431-bd2d-4b2c-991b-7ff5e9378a8e)](https://github.com/PRBonn/MapMOS/assets/38326482/04c7e5a2-dd44-431a-95b0-c42d5605078a)
 
  <i>Our predictions for the KITTI Tracking sequence 19 with true positives (green), false positives (red), and false negatives (blue).</i>
@@ -54,7 +54,7 @@ Just type
 ```bash
 mapmos_pipeline --help
 ```
-to see how to run MapMOS. 
+to see how to run MapMOS.
 <details>
 <summary>This is what you should see</summary>
 
@@ -62,7 +62,7 @@ to see how to run MapMOS.
 
 </details>
 
-Check the [Download](#downloads) section for a pre-trained model. Like [KISS-ICP](https://github.com/PRBonn/kiss-icp), our pipeline runs on a variety of point cloud data formats like `bin`, `pcd`, `ply`, `xyz`, `rosbags`, and more. To visualize these, just type 
+Check the [Download](#downloads) section for a pre-trained model. Like [KISS-ICP](https://github.com/PRBonn/kiss-icp), our pipeline runs on a variety of point cloud data formats like `bin`, `pcd`, `ply`, `xyz`, `rosbags`, and more. To visualize these, just type
 
 ```bash
 mapmos_pipeline --visualize /path/to/weights.ckpt /path/to/data
