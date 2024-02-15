@@ -1,10 +1,10 @@
 # This file is covered by the LICENSE file in the root of this project.
 # Developed by: Xieyuanli Chen
 name: "kitti"
-labels: 
+labels:
   0 : "unlabeled"
   1 : "outlier"
-  9 : "static"     # for lidar-mos static 
+  9 : "static"     # for lidar-mos static
   10: "car"
   11: "bicycle"
   13: "bus"
@@ -40,7 +40,7 @@ labels:
   259: "moving-other-vehicle"
 color_map: # bgr
   0 : [0, 0, 0]
-  1 : [0, 0, 0]  # [0, 0, 255] 
+  1 : [0, 0, 0]  # [0, 0, 255]
   9 : [0, 0, 0]     # for lidar-mos static
   10: [245, 150, 100]
   11: [245, 230, 100]

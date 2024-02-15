@@ -79,4 +79,3 @@ ENV DATA_PATH=/home/${USERNAME}/data
 ENV DATA=/home/${USERNAME}/data/kitti/SemanticKITTI/symlinks/4dmos/sequences
 
 ################################################################################
-

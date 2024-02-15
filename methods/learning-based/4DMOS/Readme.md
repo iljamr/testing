@@ -21,7 +21,7 @@
 
 ## Publication
 If you use our code in your academic work, please cite the corresponding [paper](https://www.ipb.uni-bonn.de/wp-content/papercite-data/pdf/mersch2022ral.pdf):
-    
+
 ```latex
 @article{mersch2022ral,
 author = {B. Mersch and X. Chen and I. Vizzo and L. Nunes and J. Behley and C. Stachniss},
@@ -55,12 +55,12 @@ Download the SemanticKITTI data from the official [website](http://www.semantic-
 ```
 ./
 └── sequences
-  ├── 00/           
-  │   ├── velodyne/	
+  ├── 00/
+  │   ├── velodyne/
   |   |	├── 000000.bin
   |   |	├── 000001.bin
   |   |	└── ...
-  │   └── labels/ 
+  │   └── labels/
   |       ├── 000000.label
   |       ├── 000001.label
   |       └── ...
@@ -86,7 +86,7 @@ To use it, you need to
     ```bash
     sudo apt-get install docker-compose
     ```
-    
+
     Note that this will install docker-compose v1.25 which is recommended since GPU access during build time using docker-compose v2 is currently an [open issue](https://github.com/docker/compose/issues/9681).
 
 3. Install the [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html)
@@ -98,9 +98,9 @@ To use it, you need to
             "nvidia": {
                 "path": "/usr/bin/nvidia-container-runtime",
                 "runtimeArgs": []
-            } 
+            }
         },
-        "default-runtime": "nvidia" 
+        "default-runtime": "nvidia"
     }
     ```
     Save the file and run ```sudo systemctl restart docker``` to restart docker.

@@ -1,6 +1,6 @@
 ################################################################################
 # https://docs.nvidia.com/deeplearning/frameworks/pytorch-release-notes/rel-24-01.html
-FROM nvcr.io/nvidia/pytorch:21.10-py3 AS base 
+FROM nvcr.io/nvidia/pytorch:21.10-py3 AS base
 ################################################################################
 
 RUN apt-get update && apt-get install --no-install-recommends -y \
