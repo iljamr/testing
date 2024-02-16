@@ -1,5 +1,5 @@
 {
-  "name": "Base (ROS)",
+  "name": "Base (ROS + ARM)",
   "dockerFile": "Dockerfile",
   "workspaceMount": "source=${localWorkspaceFolder},target=/home/vscode/${localWorkspaceFolderBasename},type=bind",
   "workspaceFolder": "/home/vscode/${localWorkspaceFolderBasename}",
@@ -30,6 +30,7 @@
   "customizations": {
     "vscode": {
       "extensions": [
+        "ms-toolsai.jupyter",
         "github.copilot",
         "GitHub.copilot-chat",
         "ms-python.python",

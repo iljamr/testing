@@ -5,12 +5,17 @@ FROM arm64v8/ros:noetic AS ros
 # Install ROS packages
 RUN apt-get update && apt-get install -y \
     clang-format \
-    black \
-    isort \
+    python3-pip \
     ros-noetic-rviz \
     ros-noetic-foxglove-bridge \
     ros-noetic-rosbridge-suite \
     && rm -rf /var/lib/apt/lists/*
+
+RUN python3 -m pip install --upgrade pip && \
+    python3 -m pip install \
+        ruff \
+        pre-commit \
+        jupyter
 
 ################################################################################
 FROM ros AS dynablox
