@@ -23,14 +23,19 @@ FROM ros AS base
 
 # Install base packages
 RUN apt-get update && apt-get install -y \
-    black \
+    python3-pip \
     build-essential \
     libtool \
     clang-format \
-    isort \
     rsync \
     wget \
     && rm -rf /var/lib/apt/lists/*
+
+RUN python3 -m pip install --upgrade pip && \
+    python3 -m pip install \
+        ruff \
+        pre-commit \
+        jupyter
 
 ################################################################################
 FROM base AS marsim

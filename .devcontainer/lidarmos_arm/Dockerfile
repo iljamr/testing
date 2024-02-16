@@ -4,7 +4,9 @@ FROM dustynv/torch_tensorrt:r35.2.1 AS base
 
 RUN python3 -m pip install --upgrade pip && \
     python3 -m pip install \
-        notebook \
+        ruff \
+        pre-commit \
+        jupyter \
         pytorch-lightning \
         torchmetrics \
         tqdm \

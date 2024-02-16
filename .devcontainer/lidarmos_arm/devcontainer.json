@@ -18,28 +18,27 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"njpwerner.autodocstring",
 				"ms-toolsai.jupyter",
 				"github.copilot",
 				"GitHub.copilot-chat",
 				"ms-python.python",
-				"ms-python.isort",
-				"ms-python.black-formatter"
+				"charliermarsh.ruff",
+				"eamodio.gitlens",
+				"ms-vscode-remote.vscode-remote-extensionpack",
+				"ms-azuretools.vscode-docker",
+				"mhutchie.git-graph"
 			],
 			"settings": {
-				"editor.formatOnSave": false,
-				"python.pythonPath": "/usr/bin/python3",
-				"python.isort.args": [
-					"--profile",
-					"black"
-				],
+				"editor.minimap.enabled": false,
+				"python.pythonPath": "/usr/bin/python",
 				"[python]": {
 					"editor.codeActionsOnSave": {
-						"source.organizeImports": true
-					},
-					"editor.defaultFormatter": "ms-python.black-formatter"
-				},
-				"editor.minimap.enabled": false
+						"editor.formatOnSave": "explicit",
+						"source.organizeImports": "explicit",
+						"editor.defaultFormatter": "charliermarsh.ruff",
+						"editor.defaultFoldingRangeProvider": "charliermarsh.ruff"
+					}
+				}
 			}
 		}
 	}
