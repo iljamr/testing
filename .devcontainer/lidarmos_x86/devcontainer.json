@@ -1,0 +1,49 @@
+{
+	"name": "LMNet (PyTorch x86)",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+	"workspaceMount": "source=${localWorkspaceFolder},target=/home/vscode/${localWorkspaceFolderBasename},type=bind",
+    "workspaceFolder": "/home/vscode/${localWorkspaceFolderBasename}",
+    "mounts": [
+        "source=${localEnv:HOME}${localEnv:USERPROFILE}/.bash_history,target=/home/vscode/.bash_history,type=bind",
+        "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/vscode/.ssh,readonly,type=bind",
+        "source=${localEnv:DATA_PATH},target=/home/vscode/data,type=bind",
+    ],
+	"runArgs": [
+		"--shm-size=2gb",
+		"--runtime=nvidia"
+	],
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-toolsai.jupyter",
+				"github.copilot",
+				"GitHub.copilot-chat",
+				"ms-python.python",
+				"charliermarsh.ruff",
+				"eamodio.gitlens",
+				"ms-vscode-remote.vscode-remote-extensionpack",
+				"ms-azuretools.vscode-docker",
+				"mhutchie.git-graph"
+			],
+			"settings": {
+				"editor.minimap.enabled": false,
+                "python.pythonPath": "/opt/conda/bin/python",
+                "[python]": {
+                    "editor.formatOnSave": true,
+                    "editor.codeActionsOnSave": {
+                        "source.fixAll": true,
+                        "source.organizeImports": true,
+                    },
+                    "editor.defaultFormatter": "charliermarsh.ruff",
+                },
+                "notebook.formatOnSave.enabled": true,
+                "notebook.codeActionsOnSave": {
+                    "notebook.source.fixAll": true,
+                    "notebook.source.organizeImports": true,
+                },
+			}
+		}
+	}
+}
