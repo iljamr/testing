@@ -1,5 +1,11 @@
+import matplotlib.pyplot as plt
 import numpy as np
-from utils.pypcd import PointCloud
+from pypcd import PointCloud
+
+
+def debug_image(img):
+    plt.imshow(img)
+    plt.show()
 
 
 def create_range_image(points, sensor_center, range_values, rings):
@@ -24,7 +30,7 @@ def create_range_image(points, sensor_center, range_values, rings):
     )
     # Add range values to their correct positions in the range image
     # Note: This could be done for labels and other factors as well
-    range_image[rings, angles] = range_values
+    range_image[rings.astype(int), angles.astype(int)] = range_values
 
     return range_image
 
@@ -53,7 +59,7 @@ def read_and_project(fn):
 
     if "range" in pcd_data.get_metadata()["fields"]:
         range_values = pcd_data.pc_data["range"]
-        sensor_centers = points + obs_vec * range_values
+        sensor_centers = points + obs_vec * range_values[:, None]
     else:
         range_values = None
         sensor_centers = None
@@ -73,3 +79,11 @@ def read_and_project(fn):
         )
         range_image
         labels
+
+        # debug_image(range_image)
+
+
+if __name__ == "__main__":
+    pcd_file_path = "/Volumes/mos/data/deepforestry/labled/rev7/2024-01-31-06-28-36_filtered_labeled.pcd"
+
+    read_and_project(pcd_file_path)

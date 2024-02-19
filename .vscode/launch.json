@@ -1,12 +1,32 @@
+// {
+//     "configurations": [
+//         {
+//             "name": "Python Debugger: Current File",
+//             "type": "debugpy",
+//             "request": "launch",
+//             "program": "${file}",
+//             "cwd": "${fileDirname}",
+//             "console": "integratedTerminal"
+//         }
+//     ]
+// }
 {
+    "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python Debugger: Current File",
+            "name": "Python: Debug",
             "type": "debugpy",
             "request": "launch",
-            "program": "${file}",
-            "cwd": "${fileDirname}",
-            "console": "integratedTerminal"
+            "program": "visualize.py",
+            "cwd": "/Users/ilja/Div/github/testing/tools/semantic-kitti-api",
+            "args": [
+                "--dataset",
+                "/Volumes/mos/data/kitti/SemanticKITTI/symlinks/motionbev",
+                "--sequence",
+                "8"
+            ],
+            "console": "integratedTerminal",
+            "python": "/Users/ilja/.pyenv/shims/python"
         }
     ]
 }

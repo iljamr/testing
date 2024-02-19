@@ -8,6 +8,7 @@ repos:
     args: ['--maxkb=1000']  # Set a maximum file size (in KB)
     exclude: >
       (?x)^(
+        methods/non-learning-based/m-detector/catkin_ws/src/M-detector/img/cover.bmp$|
         methods/learning-based/4DMOS/pre-trained/.*\.ckpt$|
         methods/learning-based/MotionBEV/pretrain/.*\.pt$|
         methods/learning-based/MotionBEV/imgs/|

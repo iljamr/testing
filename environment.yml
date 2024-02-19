@@ -1,19 +1,17 @@
-name: tqdt33
+name: scratchpad
+
+channels:
+  - conda-forge
+  - defaults
 
 dependencies:
+  - python=3.11
+  - ruff
+  - pre-commit
   - numpy
+  - directory-tree
+  - matplotlib
+  - jupyter
   - pip
   - pip:
-    - ruff
-    - pre-commit
-    - directory-tree
-    - python-lzf
-    - matplotlib
-    - pandas
-    - directory-tree
-    - jupyter
-    - python-dotenv
-    - icecream
-    - tqdm
-    - numba
-    - scipy
+    - https://github.com/isl-org/Open3D/releases/download/v0.18.0/open3d-0.18.0-cp311-cp311-macosx_13_0_arm64.whl
